@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      members: [],
+    };
+  }
+
+  componentDidMount() {
+    axios.get('https://api.github.com/orgs/ouishare/members')
+      .then(res => {
+        const members = res.data.map(obj => obj);
+        this.setState({ members });
+      });
+  }
+
   render() {
+    const { members } = this.state;
+
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>Ouishare's public members</h1>
+        { members.map( member => <div key={member.id}>{member.login}</div>)}
       </div>
     );
   }

@@ -8,6 +8,7 @@ class App extends Component {
 
     this.state = {
       members: [],
+      loading: true
     };
   }
 
@@ -15,17 +16,35 @@ class App extends Component {
     axios.get('https://api.github.com/orgs/ouishare/members')
       .then(res => {
         const members = res.data.map(obj => obj);
-        this.setState({ members });
+        this.setState({ members, loading: false })
       });
   }
 
-  render() {
+  renderLoading() {
+    return (
+      <div>
+        loading...
+      </div>
+    )
+  }
+
+  renderMembers() {
     const { members } = this.state;
+
+    return (
+      <div>
+      { members.map( member => <div key={member.id}>{member.login}</div>)}
+      </div>
+    )
+  }
+
+  render() {
+    const loading = this.state.loading
 
     return (
       <div className="App">
         <h1>Ouishare's public members</h1>
-        { members.map( member => <div key={member.id}>{member.login}</div>)}
+        { loading ? this.renderLoading() : this.renderMembers()}
       </div>
     );
   }

@@ -9,7 +9,10 @@ class Member extends Component {
       user: {},
       loading: true,
       error: null,
+      selected: false,
     };
+
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +25,18 @@ class Member extends Component {
       .catch(error => {
         this.setState({ loading: false, error: error })
       })
+  }
+
+  handleSelect(e) {
+    const user = this.state.user;
+    const { addToCart } = this.props;
+
+    addToCart(user);
+
+    this.setState(prevState => ({
+      selected: !prevState.selected
+    }));
+
   }
 
   renderError() {
@@ -48,7 +63,11 @@ class Member extends Component {
     }
 
     return (
-      <div>
+      <div onClick={this.handleSelect}>
+        <input
+          name={user.login}
+          type="checkbox"
+          checked={this.state.selected} />
         {user.login} - {user.public_repos}
       </div>
 

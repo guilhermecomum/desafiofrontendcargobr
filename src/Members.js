@@ -42,6 +42,7 @@ class Members extends Component {
 
   renderMembers() {
     const { members, error } = this.state;
+    const { addToCart } = this.props;
 
     if(error) {
       return this.renderError();
@@ -49,7 +50,7 @@ class Members extends Component {
 
     return (
       <div>
-      { members.map( member => <Member key={member.id} member={member} />)}
+      { members.map( member => <Member key={member.id} member={member} addToCart={addToCart} />)}
       </div>
     )
   }

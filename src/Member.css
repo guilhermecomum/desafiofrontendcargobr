@@ -1,0 +1,77 @@
+.Member, .Member-selected {
+  flex: 1 1 auto;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  height: 150px;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  width: 120px;
+}
+
+.Member {
+  background-color: #FFFFFF;
+  border: 1px solid #E0E0E0;
+}
+
+.Member-selected {
+  background-color: #FAFAFA;
+  border: 1px solid #689F38;
+}
+
+.Member-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  margin-bottom: 10px;
+}
+
+.Member-name {
+  font-size: 0.9em;
+  display: block;
+}
+
+.Member-location {
+  display: block;
+  clear: both;
+  color: #9E9E9E;
+  font-size: 0.7em;
+}
+
+.Member-value {
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #689F38;
+}
+
+.Member-add {
+  align-self: flex-end;
+  background-color: #689F38;
+  bottom: 5px;
+  border-radius: 100%;
+  color: #fff;
+  position: absolute;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+}
+
+.Member-add:before {
+  content: '+';
+}
+
+.Member:hover > .Member-add, .Member-selected:hover .Member-add {
+  display: block
+}
+
+.Member-selected > .Member-add {
+  background-color: #EF5350;
+  opacity: 0.8;
+}
+
+.Member-selected > .Member-add:before {
+  content: '-';
+}

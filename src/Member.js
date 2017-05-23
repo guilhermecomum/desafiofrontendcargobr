@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Member.css';
 
 class Member extends Component {
   constructor(props) {
@@ -17,7 +18,12 @@ class Member extends Component {
 
   componentDidMount() {
     const member = this.props.member
-    axios.get(`${member.url}`)
+    let instance = axios.create({
+      auth: {
+        username: 'a1455792df8c5cf8383edd3accd60fcd0e41f5e1',
+      },
+    });
+    instance.get(`${member.url}`)
       .then(response => {
         const data = response.data
         this.setState({ user: data, loading: false, error: null });
@@ -29,9 +35,9 @@ class Member extends Component {
 
   handleSelect(e) {
     const user = this.state.user;
-    const { addToCart } = this.props;
+    const { handleCartItem } = this.props;
 
-    addToCart(user);
+    handleCartItem(user);
 
     this.setState(prevState => ({
       selected: !prevState.selected
@@ -49,7 +55,7 @@ class Member extends Component {
 
   renderLoading() {
     return (
-      <div>
+      <div  className='Member'>
         loading...
       </div>
     )
@@ -57,29 +63,29 @@ class Member extends Component {
 
   renderMember() {
     const { user, error } = this.state;
+    const location = user.location ? user.location.split(",")[0] : "" ;
 
     if(error) {
       return this.renderError();
     }
 
     return (
-      <div onClick={this.handleSelect}>
-        <input
-          name={user.login}
-          type="checkbox"
-          checked={this.state.selected} />
-        {user.login} - {user.public_repos}
+      <div onClick={this.handleSelect} className={ this.state.selected ? 'Member-selected' : 'Member'}>
+        <div className="Member-add"/>
+        <img src={user.avatar_url} alt={`${user.name || user.login}'s avatar`} className="Member-avatar"/>
+        <div className="Member-info">
+          <div className="Member-name">{user.login}</div>
+          <div className="Member-location">{location}</div>
+          <div className="Member-value">{ user.followers }</div>
+        </div>
       </div>
-
     )
   }
 
   render() {
     const loading = this.state.loading
     return(
-      <div>
-        { loading ? this.renderLoading() : this.renderMember()}
-      </div>
+      loading ? this.renderLoading() : this.renderMember()
     )
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Members from './Members';
 import Cart from './Cart';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class App extends Component {
     };
   }
 
-  handleAddCartItem(item) {
+  handleCartItem(item) {
     let cart = this.state.cart
     if (cart.indexOf(item) === -1) {
       cart.push(item)
@@ -27,8 +28,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Members addToCart={this.handleAddCartItem.bind(this)} />
-        <Cart list={cart}/>
+        <div className="App-stage">
+          <Members handleCartItem={this.handleCartItem.bind(this)} />
+          <Cart list={cart}/>
+        </div>
       </div>
     );
   }

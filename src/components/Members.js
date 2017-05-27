@@ -18,7 +18,7 @@ class Members extends Component {
     let instance = axios.create({
       baseURL: 'https://api.github.com/',
       auth: {
-        username: '',
+        username: process.env.REACT_APP_GITHUB,
       },
     });
     instance.get(`orgs/ouishare/members`)

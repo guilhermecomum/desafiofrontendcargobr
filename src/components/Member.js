@@ -20,7 +20,7 @@ class Member extends Component {
     const member = this.props.member
     let instance = axios.create({
       auth: {
-        username: '',
+        username: process.env.REACT_APP_GITHUB,
       },
     });
     instance.get(`${member.url}`)

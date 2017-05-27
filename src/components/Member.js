@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './Member.css';
+import '../styles/Member.css';
 
 class Member extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Member extends Component {
     const member = this.props.member
     let instance = axios.create({
       auth: {
-        username: 'a1455792df8c5cf8383edd3accd60fcd0e41f5e1',
+        username: '',
       },
     });
     instance.get(`${member.url}`)

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CartItem from './CartItem';
-import './Cart.css';
+import '../styles/Cart.css';
 
 class Cart extends Component {
   renderTotal() {

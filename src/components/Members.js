@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Member from './Member';
-import './Members.css';
+import '../styles/Members.css';
 
 class Members extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Members extends Component {
     let instance = axios.create({
       baseURL: 'https://api.github.com/',
       auth: {
-        username: 'a1455792df8c5cf8383edd3accd60fcd0e41f5e1',
+        username: '',
       },
     });
     instance.get(`orgs/ouishare/members`)

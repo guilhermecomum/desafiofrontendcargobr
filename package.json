@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
     "react-scripts": "1.0.0"

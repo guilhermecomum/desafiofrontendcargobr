@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Member from './Member';
+import './Members.css';
 
 class Members extends Component {
   constructor(props) {
@@ -9,12 +10,18 @@ class Members extends Component {
     this.state = {
       members: [],
       loading: true,
-      error: null
+      error: null,
     };
   }
 
   componentDidMount() {
-    axios.get('https://api.github.com/orgs/ouishare/members')
+    let instance = axios.create({
+      baseURL: 'https://api.github.com/',
+      auth: {
+        username: 'a1455792df8c5cf8383edd3accd60fcd0e41f5e1',
+      },
+    });
+    instance.get(`orgs/ouishare/members`)
       .then(res => {
         const members = res.data.map(obj => obj);
         this.setState({ members, loading: false })
@@ -26,7 +33,7 @@ class Members extends Component {
 
   renderError() {
     return (
-      <div>
+      <div className="Members-error">
         {this.state.error.message}
       </div>
     );
@@ -42,16 +49,14 @@ class Members extends Component {
 
   renderMembers() {
     const { members, error } = this.state;
-    const { addToCart } = this.props;
+    const { handleCartItem } = this.props;
 
     if(error) {
       return this.renderError();
     }
 
     return (
-      <div>
-      { members.map( member => <Member key={member.id} member={member} addToCart={addToCart} />)}
-      </div>
+      members.map( member => <Member key={member.id} member={member} handleCartItem={handleCartItem} />)
     )
   }
 
@@ -59,9 +64,14 @@ class Members extends Component {
     const loading = this.state.loading
 
     return (
-      <div className="App">
-        <h1>Ouishare's public members</h1>
-        { loading ? this.renderLoading() : this.renderMembers()}
+      <div className="Members">
+        <h1 className="Members-title">
+          Membros do Ouishare
+          <small>(Clique nos membros para adicionar ou remove-los)</small>
+        </h1>
+        <div className="Members-list">
+          { loading ? this.renderLoading() : this.renderMembers()}
+        </div>
       </div>
     )
   }

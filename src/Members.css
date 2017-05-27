@@ -1,0 +1,36 @@
+.Members {
+  display: flex;
+  flex: 1 auto;
+  flex-direction: column;
+  width: 75%;
+}
+
+.Members-title {
+  padding-left: 20px;
+}
+
+.Members-title small {
+  font-size: 0.6em;
+  font-weight: normal;
+  color: #BDBDBD;
+  clear: both;
+  display: block;
+}
+
+.Members-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 0 10px;
+}
+
+.Members-error {
+  color: #F44336;
+  padding-left: 20px;
+}
+
+@media (max-width: 800px) {
+  .Members {
+    width: 100%;
+  }
+}

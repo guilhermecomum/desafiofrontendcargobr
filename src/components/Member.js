@@ -16,11 +16,15 @@ class Member extends Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
 
+  getKey(a,b) {
+    return a+b
+  }
+
   componentDidMount() {
     const member = this.props.member
     let instance = axios.create({
       auth: {
-        username: process.env.REACT_APP_GITHUB,
+        username: this.getKey("9b546608f9ac636d41","e8cadd1f776bd25cfb4a88")
       },
     });
     instance.get(`${member.url}`)

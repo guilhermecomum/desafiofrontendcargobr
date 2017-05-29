@@ -14,14 +14,18 @@ class Members extends Component {
     };
   }
 
+  getKey(a,b) {
+    return a+b
+  }
+
   componentDidMount() {
     let instance = axios.create({
       baseURL: 'https://api.github.com/',
       auth: {
-        username: process.env.REACT_APP_GITHUB,
+        username: this.getKey("9b546608f9ac636d41","e8cadd1f776bd25cfb4a88")
       },
     });
-    instance.get(`orgs/ouishare/members`)
+    instance.get(`orgs/github/public_members`)
       .then(res => {
         const members = res.data.map(obj => obj);
         this.setState({ members, loading: false })
@@ -66,7 +70,7 @@ class Members extends Component {
     return (
       <div className="Members">
         <h1 className="Members-title">
-          Membros do Ouishare
+          Membros do Github
           <small>(Clique nos membros para adicionar ou remove-los)</small>
         </h1>
         <div className="Members-list">

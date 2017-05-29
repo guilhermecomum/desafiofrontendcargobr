@@ -16,6 +16,9 @@ $ npm install
 Certifique-se de [criar um token de acesso](https://github.com/settings/tokens) para API do github
 e adiciona-lo no `.env`
 
+Marque apenas a opção `Read org and team membership`
+![Read org and team membership](https://cl.ly/kgBg/Image%202017-05-29%20at%203.20.26%20PM.png)
+
 Com o setup feito vamos rodar o projeto:
 ```
 $ npm start
